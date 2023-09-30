@@ -25,8 +25,8 @@ This project focuses on Machine Learning Adversary research. We aim to develop v
   - **WSU ID:** 11806472
 
 ## Usage information
-- API info are in the frontend/src/api
-
+- Make sure Node.js is locally installed. Download available at https://nodejs.org/en/download
+- Execute node -v in terminal to make sure it downloaded and pathed properly
+- Naviagte to frontend/src/api
 - Use ```npm install``` -> ```npm run serve``` to launch front end
-
 - Run .sql to create a database
