@@ -30,3 +30,8 @@ This project focuses on Machine Learning Adversary research. We aim to develop v
 - Naviagte to frontend/src/api
 - Use ```npm install``` -> ```npm run serve``` to launch front end
 - Run .sql to create a database
+
+##To make a prediction with the classifier
+- !python3 prediction.py image_path model_path
+- Below is an example:
+- !python3 prediction.py /home/cugwu_dg/cpts-528-project/528Project/dog_example.jpg /home/cugwu_dg/cpts-528-project/528Project/model.pth
