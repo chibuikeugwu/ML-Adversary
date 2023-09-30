@@ -31,7 +31,14 @@ This project focuses on Machine Learning Adversary research. We aim to develop v
 - Use ```npm install``` -> ```npm run serve``` to launch front end
 - Run .sql to create a database
 
-## To make a prediction with the classifier
-- !python3  prediction.py  image_path  model_path
+## To make a prediction with the classifier, run on the terminal as follows:
+- !pip install torch
+- !pip install torchvision
+- can generally be run in a conda environment
+-
+
+
+
+- !python3 prediction.py "url-of-image-1" "url-of-image-1" ...
 - Below is an example:
-- !python3  prediction.py  /home/cugwu_dg/cpts-528-project/528Project/dog_example.jpg  /home/cugwu_dg/cpts-528-project/528Project/model.pth
+- !python3 prediction.py "https://cdn.britannica.com/79/232779-050-6B0411D7/German-Shepherd-dog-Alsatian.jpg" "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Rottweiler_standing_facing_left.jpg/800px-Rottweiler_standing_facing_left.jpg"
