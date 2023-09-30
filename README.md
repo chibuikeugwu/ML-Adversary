@@ -32,7 +32,7 @@ This project focuses on Machine Learning Adversary research. We aim to develop v
 - Run .sql to create a database
 
 ## To make a prediction with the classifier, run on the terminal as follows:
-**Dependencies:
+** Dependencies:
 - !pip install torch
 - !pip install torchvision
 - can generally be run in a conda environment
