@@ -1,7 +1,6 @@
 import prediction_args
 import torch
 import numpy as np
-from PIL import Image
 from torchvision import models, transforms
 import sys
 import os
