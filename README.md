@@ -24,3 +24,9 @@ This project focuses on Machine Learning Adversary research. We aim to develop v
   - **Email:** chibuike.ugwu@wsu.edu
   - **WSU ID:** 11806472
 
+## Usage information
+- API info are in the frontend/src/api
+
+- Use ```npm install``` -> ```npm run serve``` to launch front end
+
+- Run .sql to create a database
