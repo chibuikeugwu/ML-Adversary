@@ -3,7 +3,7 @@
     <div class="collapse-btn">
       <i class="el-icon-menu" @click="foldMenu"></i>
     </div>
-    <img src="../assets/img/logo-plaintext.png"/>
+    <img src="@/assets/img/logo-plaintext.png"/>
     <el-input class="searchInput"
         placeholder="Search"
         suffix-icon="el-icon-search"
@@ -67,11 +67,11 @@ export default {
 
 
 img {
-  height: 20px;
+  height: 80px;
   position: relative;
   float: left;
   display: flex;
-  top: 25px;
+  top: 20px;
 }
 
 .searchInput {

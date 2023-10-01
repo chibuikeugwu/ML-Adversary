@@ -3,7 +3,7 @@
     <div class="operationBoX">
       <el-button class="operationBtn uploadBtn"type="primary" icon="el-icon-upload2" @click="uploadDialogVisible = true">Upload</el-button>
       <el-button-group class="operationBtn operationBtnGrp">
-        <el-button  type="primary" icon="el-icon-video-play">Recognize</el-button>
+        <el-button  type="primary" icon="el-icon-video-play" @click="handleRecognizeClick">Recognize</el-button>
 <!--        <el-button  type="primary" icon="el-icon-circle-plus-outline">新建记忆集</el-button>-->
       </el-button-group>
       <el-input class="searchInput"
@@ -28,6 +28,25 @@
       </span>
       </el-dialog>
 
+      <!-- Recognize Image Dialog -->
+      <el-dialog :visible.sync="recognizeDialogVisible"
+                 :before-close="handleClose"
+                 v-loading="isRecognizeLoading"
+                 element-loading-text="Recognizing...Please wait">
+        <span slot="title">Recognize Pictures</span>
+
+        <el-form ref="form">
+          <el-form-item v-for="row in selectedRows" :key="row.pictureName">
+            <span>{{ row.pictureName }}</span>
+          </el-form-item>
+        </el-form>
+
+        <span slot="footer" class="dialog-footer">
+        <el-button @click="recognizeDialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="handleRecognizeConfirm">Confirm</el-button>
+      </span>
+      </el-dialog>
+
     </div>
     <div class="tableBox">
       <router-view></router-view>
@@ -38,15 +57,18 @@
 
 <script>
 
-import {uploadPictures} from "@/api/pictures";
+import {updatePictures, uploadPictures} from "@/api/pictures";
+import {postToClassifier} from "@/api/classify";
 
 export default {
   name:'Pictures',
   data(){
     return{
       searchContent:'',
-      tableData: [],
+      selectedRows: [],
       uploadDialogVisible:false,
+      recognizeDialogVisible:false,
+      isRecognizeLoading: false,
       form: {
         pictureName: '',
         pictureFilePath: '',
@@ -54,7 +76,39 @@ export default {
       }
     }
   },
-  methods:{
+  methods: {
+    handleClose(done) {
+      this.recognizeDialogVisible = false;
+      done();
+    },
+    updateTable(){
+      this.$bus.$emit('update table', 0);
+    },
+    handleRecognizeClick(){
+      if (this.selectedRows.length == 0) {
+        alert("Please select pictures you want to recognize first!")
+      }
+      else {
+        this.recognizeDialogVisible = true
+      }
+    },
+    async handleRecognizeConfirm() {
+      this.isRecognizeLoading = true;
+      // Assuming you want to send only the pictureNames to the classifier
+      const pictures = this.selectedRows;
+
+      try {
+        const labeledPictures = await postToClassifier(pictures);
+        // Handle the returned labels as needed
+        await updatePictures(labeledPictures)
+        await this.updateTable()
+      } catch (error) {
+        console.error("Error sending data to classifier:", error);
+      } finally {
+        this.isRecognizeLoading = false;
+        this.recognizeDialogVisible = false;
+      }
+    },
     async handleUpload() {
       try {
         // Show $confirm message box
@@ -83,11 +137,14 @@ export default {
         this.form.pictureName = '';
         this.uploadDialogVisible = false;
       }
-      this.$bus.$emit('update table', 0);
+      this.updateTable()
     },
   },
   mounted() {
     this.$router.replace({name:'PicturesTable'})
+    this.$bus.$on('selected pics', (data)=>{
+      this.selectedRows=data
+    })
   }
 }
 </script>

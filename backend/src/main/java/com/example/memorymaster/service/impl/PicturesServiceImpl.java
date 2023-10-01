@@ -11,6 +11,8 @@ import com.example.memorymaster.service.IPicturesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PicturesServiceImpl extends ServiceImpl<PicturesMapper, Pictures> implements IPicturesService {
     @Autowired
@@ -29,4 +31,16 @@ public class PicturesServiceImpl extends ServiceImpl<PicturesMapper, Pictures> i
         QueryWrapper<Pictures> wrapper=new QueryWrapper<>();
         return picturesMapper.insert(picture);
     }
+
+    @Override
+    public int updatePictures(List<Pictures> pictures) {
+        for(Pictures img : pictures) {
+            Pictures pic = picturesMapper.selectById(img.getPictureId());
+            pic.setPictureLabel(img.getPictureLabel());
+            updateById(pic);
+        }
+        return 1;
+    }
+
+
 }

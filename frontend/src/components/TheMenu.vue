@@ -73,16 +73,16 @@ export default {
       this.$router.replace({name:e.index})
     },
     logOut(){
-      this.$confirm('确定退出吗?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+      this.$confirm('Sure to leave?', 'Notice', {
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
         type: 'warning'
       }).then(() => {
         window.sessionStorage.removeItem('user')
         this.$router.replace('/')
         this.$message({
           type: 'success',
-          message: '已退出MemoryMaster!'
+          message: 'Quit MLAdversary!'
         });
       }).catch(() => {});
     }

@@ -7,9 +7,9 @@ import com.example.memorymaster.entity.params.PageParam;
 import com.example.memorymaster.service.IPicturesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/pictures")
@@ -27,5 +27,11 @@ public class PictureController {
     @GetMapping("/upload")
     public JsonResponse uploadPicture(Pictures picture){
         return JsonResponse.success(picturesService.uploadPicture(picture));
+    }
+
+    @ResponseBody
+    @PostMapping("/update")
+    public JsonResponse updatePictures(@RequestBody List<Pictures> pictures){
+        return JsonResponse.success(picturesService.updatePictures(pictures));
     }
 }

@@ -6,8 +6,13 @@
         :header-cell-style="{'text-align':'center'}"
         :cell-style="{'text-align':'center'}"
         class="hover-show"
-        @row-click="handleRowClick">
+        @row-click="handleRowClick"
+        @selection-change="handleSelectionChange">
 <!--        @row-click="handleFolderRowClick">-->
+      <el-table-column
+          type="selection"
+          width="55">
+      </el-table-column>
       <el-table-column
           prop="picture_name"
           label="Picture Name"
@@ -76,6 +81,7 @@ export default {
   data(){
     return{
       pictureTableData:[],
+      selectedRows:[],
       selectedImage: null,
       dialogVisible: false,
       total:0,
@@ -104,6 +110,10 @@ export default {
     handleRowClick(row){
       this.selectedImage = row
       this.dialogVisible = !this.dialogVisible
+    },
+    handleSelectionChange(val){
+      this.selectedRows = val
+      this.$bus.$emit('selected pics', val)
     }
   },
   created() {
@@ -119,7 +129,7 @@ export default {
 
 <style scoped>
 
-/* 在表格行悬停时显示内容 */
+
 .hover-show .el-table__row:hover .hover-content {
   display: inline-block;
 }

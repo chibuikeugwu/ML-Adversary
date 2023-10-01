@@ -63,7 +63,7 @@ body {
 
 img {
   width: 1000px;
-  margin: auto;
+  margin: 100px auto auto;
 
 }
 

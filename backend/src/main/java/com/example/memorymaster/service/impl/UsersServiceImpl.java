@@ -41,8 +41,6 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
         QueryWrapper<Users> wrapper=new QueryWrapper<>();
         wrapper.eq("user_email",user.getUserEmail());
         Users userDO=usersMapper.selectOne(wrapper);
-        //SessionUtils.setCurrentUser(userDO);//调用此方法时一定登录成功，故session记录
-        //System.out.println(SessionUtils.getCurrentUser().toString());
         UserVO userVO=new UserVO();
         BeanUtils.copyProperties(userDO,userVO);
         return userVO;
