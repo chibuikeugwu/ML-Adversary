@@ -36,6 +36,7 @@ This project focuses on Machine Learning Adversary research. We aim to develop v
 - !pip install torch
 - !pip install torchvision
 - can generally be run in a conda environment
+- 
 **How to run:** 
 - !python3 prediction.py "url-of-image-1" "url-of-image-1" ...
 - Below is an example:
