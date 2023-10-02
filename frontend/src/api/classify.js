@@ -6,7 +6,8 @@ export function postToClassifier(data) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            withCredentials: true}).then(
+            withCredentials: true,
+            timeout: 0}).then(
             (response) => resolve(response.data),
             (error) => reject(error)
         );

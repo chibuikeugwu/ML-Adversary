@@ -1,12 +1,7 @@
 [
     {
-        "images/German-Shepherd-dog-Alsatian.jpg": [
-            "German_shepherd"
-        ]
-    },
-    {
-        "images/800px-Rottweiler_standing_facing_left.jpg": [
-            "Rottweiler"
+        "images\\1200px-Bulldog_inglese.jpg": [
+            "bull_mastiff"
         ]
     }
 ]

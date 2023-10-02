@@ -23,8 +23,6 @@ def classify(img_url):
     Predictions are happening here!
     """
 
-
-#########################################################################""
     #output_file_directory = "output_files"
     output_file = "output.json"  # Output JSON filename
 
@@ -33,15 +31,15 @@ def classify(img_url):
         os.remove(output_file)
 
 
-    parser = prediction_args.prediction_args()
-    args = parser.parse_args()
+    # parser = prediction_args.prediction_args()
+    # args = parser.parse_args()
 
     # CPU OR GPU?
     device = torch.device("cpu")
-    if args.gpu:
-        device = torch.device("cuda")
+    # if args.gpu:
+    #     device = torch.device("cuda")
 
-    model = load_the_model(device, args.model)
+    model = load_the_model(device, "./model.pth")
 
 
 
@@ -233,7 +231,5 @@ def predict(image_path, model, topk, device):
     return top_probs,actual_names
 
 
-if __name__== "__main__":
-    main()
 
 
