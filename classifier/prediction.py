@@ -18,7 +18,7 @@ warnings.filterwarnings("ignore")
 
 
 
-def main():
+def classify(img_url):
     """
     Predictions are happening here!
     """
@@ -51,27 +51,37 @@ def main():
     download_directory = "images"
 
     # Download the images and get their paths
-    downloaded_image_paths = download_images_and_get_paths(args.urls, download_directory)
+    image_path = download_image(img_url, download_directory)
     #print("downloaded_image_paths",downloaded_image_paths)
 
 
     results = []  # List to store results for multiple images
     # Print the paths of the downloaded images
-    for image_path in downloaded_image_paths:
+#     for image_path in downloaded_image_paths:
+#
+#
+#         #print("image path:", image_path)
+#
+#         # Download image, preprocess, and classify
+#         top_probs, actual_names = predict(image_path, model, args.top_k, device)
+#         #print("actual_names", actual_names)
+#
+#         # Store results for this image
+#         result = {
+#             image_path: actual_names
+#         }
+#         results.append(result)
+            #print("image path:", image_path)
 
+    # Download image, preprocess, and classify
+    top_probs, actual_names = predict(image_path, model, 1, device)
+    print("actual_names", actual_names)
 
-        #print("image path:", image_path)
-
-        # Download image, preprocess, and classify
-        top_probs, actual_names = predict(image_path, model, args.top_k, device)
-        #print("actual_names", actual_names)
-
-        # Store results for this image
-        result = {
-            image_path: actual_names
-        }
-        results.append(result)
-
+    # Store results for this image
+    result = {
+        image_path: actual_names
+    }
+    results.append(result)
 
 
     # Save results as JSON
@@ -80,31 +90,8 @@ def main():
 
     print("Results saved to", output_file)
 
+    return actual_names[0]
 
-
-#################################################################################################
-    #print("Current image: {}".format(args.path_to_image))
-    # print on terminal
-    '''print("Model: {}".format(args.model))
-    print("Device: {}".format(device))
-    print(" ")
-
-    print(" ")
-
-    print("=======================================================")
-    print("OUR PREDICTION:")
-    print("The dog is {} ".format(actual_names[0]))
-    print("=======================================================")
-
-    print(" ")
-
-
-    print("Top possibilities are: ")
-    for i in range(len(top_probs)):
-        print("The dog is {} with probability {:.2f}".format(actual_names[i], top_probs[i]))'''
-
-
-#################################################################################################
 
 
 
