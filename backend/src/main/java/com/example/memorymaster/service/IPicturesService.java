@@ -11,4 +11,6 @@ public interface IPicturesService extends IService<Pictures> {
     Page<Pictures> getPicturesByUserId(PageParam pageParam);
     int uploadPicture(Pictures picture);
     int updatePictures(List<Pictures> pictures);
+    int editPicture(Pictures picture);
+    int deletePicture(Long pictureId);
 }

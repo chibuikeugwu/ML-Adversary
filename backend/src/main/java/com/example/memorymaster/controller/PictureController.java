@@ -34,4 +34,17 @@ public class PictureController {
     public JsonResponse updatePictures(@RequestBody List<Pictures> pictures){
         return JsonResponse.success(picturesService.updatePictures(pictures));
     }
+
+    @ResponseBody
+    @PostMapping("/edit")
+    public JsonResponse editPictures(@RequestBody Pictures picture){
+        return null;
+    }
+
+    @ResponseBody
+    @PostMapping("/delete")
+    public JsonResponse editPictures(@RequestBody Long pictureId){
+        return null;
+    }
+
 }

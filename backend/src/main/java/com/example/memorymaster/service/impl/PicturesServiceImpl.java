@@ -42,5 +42,13 @@ public class PicturesServiceImpl extends ServiceImpl<PicturesMapper, Pictures> i
         return 1;
     }
 
+    @Override
+    public int editPicture(Pictures picture) {
+        return 0;
+    }
 
+    @Override
+    public int deletePicture(Long pictureId) {
+        return 0;
+    }
 }
