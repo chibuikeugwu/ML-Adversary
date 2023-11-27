@@ -4,6 +4,8 @@ import torch
 import torchvision.transforms as transforms
 from PIL import Image
 import requests
+import evasion_defend
+
 
 preprocess = transforms.Compose([
     transforms.Resize(256),
@@ -23,8 +25,17 @@ def classify_and_attack(img_url):
     original_breed = classify(img_url)
     response = requests.get(img_url)
     img = Image.open(BytesIO(response.content))
+
+    # prepocess defense
+    img = evasion_defend.random_resizing(img)
+    img = evasion_defend.random_cropping(img)
+    img = evasion_defend.apply_gaussian_blur(img, radius=2)
+    img = evasion_defend.jpeg_compression(img, quality=85)
+
     img_tensor = preprocess(img)
     img_tensor = img_tensor.unsqueeze(0)  # Add batch dimension
+
+    img_tensor = evasion_defend.add_random_noise(img_tensor, noise_level=0.05)
 
     # enable gradients for the image
     img_tensor.requires_grad = True
@@ -42,7 +53,7 @@ def classify_and_attack(img_url):
     if img_tensor.grad is None:
         raise ValueError("Gradients not computed. Ensure that `requires_grad` is set to True.")
 
-    epsilon = 0.01
+    epsilon = 0.05
     data_grad = img_tensor.grad.data
     perturbed_image = img_tensor + epsilon * data_grad.sign()
     perturbed_image = torch.clamp(perturbed_image, 0, 1)
