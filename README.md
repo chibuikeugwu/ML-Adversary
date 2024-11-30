@@ -7,22 +7,11 @@ This project focuses on Machine Learning Adversary research. We aim to develop v
 - **Team Name:** CRAG-MLAdversary
 
 ## Team Members
+- **Chibuike E. Ugwu**
 - **Guo, Jiawei**
-  - **Email:** jiawei.guo@wsu.edu
-  - **WSU ID:** 011854914
-
 - **Azza Fadhel**
-  - **Email:** azza.fadhel@wsu.edu
-  - **WSU ID:** 11819844
-  - **Contact:** The contact person
-
 - **Stirewalt, Tashi Russell**
-  - **Email:** tashi.stirewalt@wsu.edu
-  - **WSU ID:** 011809728
 
-- **Ugwu, Chibuike Emmanuel**
-  - **Email:** chibuike.ugwu@wsu.edu
-  - **WSU ID:** 11806472
 
 ## Usage information
 - Make sure Node.js is locally installed. Download available at https://nodejs.org/en/download
